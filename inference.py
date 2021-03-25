@@ -11,6 +11,7 @@ def speech2text():
 	transcriber = Transcriber(pretrain_model = config["TRANSCRIBER"]["pretrain_model"],
 							finetune_model = config["TRANSCRIBER"]["finetune_model"],
 							dictionary = config["TRANSCRIBER"]["dictionary"],
+							lm_type = 'kenlm',
 							lm_lexicon = config["TRANSCRIBER"]["lm_lexicon"],
 							lm_model = config["TRANSCRIBER"]["lm_model"],
 							lm_weight = config["TRANSCRIBER"]["lm_weight"],
