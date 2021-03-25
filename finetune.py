@@ -75,7 +75,7 @@ def main():
     
     SPLIT_NUM = int(len(words) * (1 - args.valid_percent))
     
-    words,letters,paths = shuffle(words,letters,paths)
+    words,letters,paths = shuffle(words,letters,paths, random_state=42)
     
     train_w, valid_w = words[:SPLIT_NUM], words[SPLIT_NUM:]
     train_l, valid_l = letters[:SPLIT_NUM], letters[SPLIT_NUM:]
@@ -122,7 +122,14 @@ def main():
     
     if args.restore_file is not None:
         cmd.append("checkpoint.restore_file=" + args.restore_file)
+        #cmd.append("checkpoint.reset_optimizer=True")
+        #cmd.append("checkpoint.reset_lr_scheduler=True")
+        #cmd.append("checkpoint.reset_dataloader=True")
+        #cmd.append("checkpoint.reset_meters=True")
     
+    #cmd.append("optimization.max_update=100000")
+    #cmd.append("dataset.validate_after_updates=0")
+    #cmd.append("model.freeze_finetune_updates=0")
     cmd.append("--config-dir config/finetuning")
     cmd.append("--config-name " + config_name)
     cmd = ' '.join(cmd)

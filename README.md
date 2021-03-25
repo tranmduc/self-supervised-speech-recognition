@@ -52,7 +52,7 @@ Where:
 Logs and checkpoints will be stored at outputs directory\
 Log_file path: outputs/date_time/exp_id/hydra_train.log.  You should check the loss value to decide when to stop the training process.\
 Best_checkpoint path: outputs/date_time/exp_id/checkpoints/checkpoint_best.pt\
-In my casse, it took ~ 2 days for the model to converge, train on 100 hours of data using 2 NVIDIA Tesla V100.
+In my casse, it took ~ 4 days for the model to converge, train on 100 hours of data using 2 NVIDIA Tesla V100.
 
 ### 2. Finetune the self-supervised model on the labeled data
 
@@ -142,6 +142,7 @@ The LM model and the lexicon file will be stored at output_path
 from stt import Transcriber
 transcriber = Transcriber(pretrain_model = 'path/to/pretrain.pt', finetune_model = 'path/to/finetune.pt', 
                           dictionary = 'path/to/dict.ltr.txt',
+                          lm_type = 'kenlm',
                           lm_lexicon = 'path/to/lm/lexicon.txt', lm_model = 'path/to/lm/lm.bin',
                           lm_weight = 1.5, word_score = -1, beam_size = 50)
 hypos = transcriber.transcribe(['path/to/wavs/0_1.wav','path/to/wavs/0_2.wav'])
@@ -153,6 +154,13 @@ Where:
  - finetune_model: path to best fine-tuned checkpoint from step 2.3
  - dictionary: dictionary file generated from step 2.2
  - lm_lexicon and lm_model: generated from step 3.2
+
+Note: If you running inference in a juyter notebook. Please add these lines above the inference script:
+```
+import sys
+sys.argv = ['']
+```
+
 
 ## Pre-trained models (Pretrain + Fine-tune + LM)
 - [Vietnamese](https://drive.google.com/file/d/1kZFdvMQt-R7fVebTbfWMk8Op7I9d24so/view?usp=sharing)

@@ -12,7 +12,7 @@ cd libs
 
 #### 1. Install python package
 ```
-pip install soundfile torchaudio sentencepiece
+pip install soundfile torchaudio sentencepiece editdistance sklearn
 If cuda version < 11 (eg. cuda 10.1):
 pip install torch==1.6.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
 If cuda >= 11:
@@ -30,8 +30,8 @@ cd ..
 
 #### 3. Install dependencies for wav2letter
 ```
-sudo apt-get update && apt-get upgrade -y && apt-get install -y && apt-get -y install apt-utils gcc libpq-dev libsndfile-dev
-sudo apt install build-essential cmake libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-test-dev libeigen3-dev zlib1g-dev libbz2-dev liblzma-dev
+sudo apt-get update && sudo apt-get -y install apt-utils libpq-dev libsndfile-dev
+sudo apt install libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-test-dev libeigen3-dev zlib1g-dev libbz2-dev liblzma-dev
 sudo apt-get install libsndfile1-dev libopenblas-dev libfftw3-dev libgflags-dev libgoogle-glog-dev
 ```
 
