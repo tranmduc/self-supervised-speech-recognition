@@ -5,6 +5,13 @@ import glob
 import os
 import pandas as pd
 
+def dirwalk(dir, bag, wildcards):
+    bag.extend(glob.glob(path.join(dir, wildcards)))
+    for f in os.listdir(dir):
+        fullpath = os.path.join(dir, f)
+        if os.path.isdir(fullpath) and not os.path.islink(fullpath):
+            dirwalk(fullpath, bag, wildcards)
+
 def speech2text():
 	config = configparser.ConfigParser()
 	config.read("config.txt")
@@ -18,7 +25,9 @@ def speech2text():
 							word_score = config["TRANSCRIBER"]["word_score"],
 							beam_size = config["TRANSCRIBER"]["beam_size"])
 
-	audioList = glob.glob(os.path.join(config["TRANSCRIBER"]["wav_folder"], '*.wav'))
+	audioList = []
+	# audioList = glob.glob(os.path.join(config["TRANSCRIBER"]["wav_folder"], '*.wav'))
+	dirwalk(config["TRANSCRIBER"]["wav_folder"], audioList, "*.wav")
 	print(audioList)
 
 	hypos = transcriber.transcribe(audioList)
