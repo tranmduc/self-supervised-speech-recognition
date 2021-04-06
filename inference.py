@@ -4,6 +4,7 @@ import configparser
 import glob
 import os
 import pandas as pd
+from os import path
 
 def dirwalk(dir, bag, wildcards):
     bag.extend(glob.glob(path.join(dir, wildcards)))
