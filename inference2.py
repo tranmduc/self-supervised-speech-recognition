@@ -1,10 +1,6 @@
 from stt import Transcriber
-import sys
 import configparser
-import glob
-import os
 import pandas as pd
-from os import path
 
 def speech2text():
 	config = configparser.ConfigParser()
