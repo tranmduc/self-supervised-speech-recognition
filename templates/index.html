@@ -1,0 +1,21 @@
+<!doctype html>
+<title>Vietnamese Speech Recognition</title>
+<h2>Select a file to upload</h2>
+
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+	<p>
+		<input type="file" name="file" autocomplete="off" required>
+	</p>
+    </dl>
+    <p>
+	<input type="submit" value="Submit">
+    </p>
+</form>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+        Transcript: {{ messages[0] }}
+	  {% endif %}
+	{% endwith %}
+</p>
